@@ -1,21 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-
-class Task
-{
-    public function __construct(
-        public int $id,
-        public string $title,
-        public string $description,
-        public ?string $long_description,
-        public bool $completed,
-        public string $created_at,
-        public string $updated_at
-    ) {
-    }
-}
 
 
 Route::get('/', function () {
@@ -28,8 +14,14 @@ Route::get('/tasks', function ()  {
     ]);
 })->name('tasks.index');
 
-Route::get('/task/{id}', function ($id)  {
-        return view('single-task', [
-            'task' =>     \App\Models\Task::findOrFail($id)
+Route::view('/tasks/create', 'create')->name('tasks.create');
+
+Route::get('/tasks/{id}', function ($id)  {
+        return view('show', [
+            'task' => \App\Models\Task::findOrFail($id)
         ]);
-})->name('task.show');
+})->name('tasks.show');
+
+Route::post('/tasks', function (Request $request) {
+    dd($request->all());
+})->name('tasks.store');

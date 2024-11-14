@@ -5,9 +5,10 @@
 @section('content')
     @forelse ($tasks as $task)
         <div class="card">
-            <a href="{{route('task.show', ['id' => $task->id])}}">{{$task->title}}</a>
+            <a href="{{route('tasks.show', ['id' => $task->id])}}">{{$task->title}}</a>
         </div>
     @empty
     <h3>There are no tasks</h3>
     @endforelse
+    <a href={{route('tasks.create')}}><button>Create new Task</button></a>
 @endsection
