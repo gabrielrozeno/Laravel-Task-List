@@ -8,7 +8,7 @@
     <h1>@yield('title')</h1>
     <div>
         @if(session()->has('success')) {
-            <div>{{session('success')}}</div>
+            <p>{{session('success')}}</p>
         }
         @endif
         @yield('content')
