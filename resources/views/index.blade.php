@@ -10,5 +10,10 @@
     @empty
     <h3>There are no tasks</h3>
     @endforelse
+    @if ($tasks->count())
+    <nav>
+        {{$tasks->links()}}
+    </nav>
+    @endif
     <a href={{route('tasks.create')}}><button>Create new Task</button></a>
 @endsection
