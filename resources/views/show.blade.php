@@ -3,6 +3,13 @@
 @section('title', $task->title)
 
 @section('content')
+<p>
+    @if ($task->completed)
+        Completed
+    @else
+        Not Completed
+    @endif
+</p>
 <p>{{$task->description}}</p>
 @if ($task->long_description)
 <p>{{$task->long_description}}</p>
@@ -22,11 +29,13 @@
         </button>
     </form>
 </div>
-<a href="{{route('tasks.index')}}">Go back</a>
-<a href="{{route('tasks.edit', ['task' => $task->id])}}">Edit Task</a>
+<div>
+<a href="{{route('tasks.index')}}"><button>Go back</button></a>
+<a href="{{route('tasks.edit', ['task' => $task->id])}}"><button>Edit Task</button></a>
 <form action="{{route('tasks.destroy', ['task' => $task->id])}}" method="post">
     @csrf
     @method('DELETE')
-    <button type="submit">Delete Task</button>
+    <button type="submit" class="btn">Delete Task</button>
 </form>
+</div>
 @endsection
