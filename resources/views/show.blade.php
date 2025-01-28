@@ -8,5 +8,12 @@
 <p>{{$task->long_description}}</p>
 @endif
 <p>Created at {{$task->created_at->format('d/m/Y H:i:s')}}</p>
+<p>Updated at {{$task->updated_at->format('d/m/Y H:i:s')}}</p>
 <a href="{{route('tasks.index')}}">Go back</a>
+<a href="{{route('tasks.edit', ['task' => $task->id])}}">Edit Task</a>
+<form action="{{route('tasks.destroy', ['task' => $task->id])}}" method="post">
+    @csrf
+    @method('DELETE')
+    <button type="submit">Delete Task</button>
+</form>
 @endsection
